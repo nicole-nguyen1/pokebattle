@@ -1,2 +1,4 @@
-packages: 
-  - "packages/*"
+packages:
+  - 'packages/*'
+  - 'packages/api/*'
+  - 'packages/ui/*'
