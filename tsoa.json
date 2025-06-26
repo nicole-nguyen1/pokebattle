@@ -1,0 +1,13 @@
+{
+  "entryFile": "packages/battle-api/src/main.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": ["packages/battle-api/src/routes/**/controller.ts"],
+  "spec": {
+    "outputDirectory": "packages/battle-api/src/openapi",
+    "specVersion": 3
+  },
+  "routes": {
+    "routesDir": "packages/battle-api/src/generated",
+    "middleware": "koa"
+  }
+}

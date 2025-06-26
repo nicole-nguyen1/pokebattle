@@ -10,6 +10,8 @@ export default [
       '**/vite.config.*.timestamp*',
       '**/vitest.config.*.timestamp*',
       '**/test-output',
+      '**/build',
+      '**/.react-router',
     ],
   },
   {

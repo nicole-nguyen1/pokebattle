@@ -1,0 +1,351 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"NamedAPIResource": {
+				"description": "The name and the URL of the referenced resource",
+				"properties": {
+					"name": {
+						"type": "string",
+						"description": "The name of the referenced resource"
+					},
+					"url": {
+						"type": "string",
+						"description": "The URL of the referenced resource"
+					}
+				},
+				"required": [
+					"name",
+					"url"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PokemonAbility": {
+				"description": "Abilities the given pokémon could potentially have",
+				"properties": {
+					"is_hidden": {
+						"type": "boolean",
+						"description": "Whether or not this is a hidden ability"
+					},
+					"slot": {
+						"type": "number",
+						"format": "double",
+						"description": "The slot this ability occupies in this Pokémon species"
+					},
+					"ability": {
+						"$ref": "#/components/schemas/NamedAPIResource",
+						"description": "The ability the Pokémon may have"
+					}
+				},
+				"required": [
+					"is_hidden",
+					"slot",
+					"ability"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PokemonStat": {
+				"description": "Base stat values for the given Pokémon",
+				"properties": {
+					"stat": {
+						"$ref": "#/components/schemas/NamedAPIResource",
+						"description": "The stat the Pokémon has"
+					},
+					"effort": {
+						"type": "number",
+						"format": "double",
+						"description": "The effort points (EV) the Pokémon has in the stat"
+					},
+					"base_stat": {
+						"type": "number",
+						"format": "double",
+						"description": "The base value of the stat"
+					}
+				},
+				"required": [
+					"stat",
+					"effort",
+					"base_stat"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PokemonType": {
+				"description": "Details showing types the given Pokémon has",
+				"properties": {
+					"slot": {
+						"type": "number",
+						"format": "double",
+						"description": "The order the Pokémon's types are listed in"
+					},
+					"type": {
+						"$ref": "#/components/schemas/NamedAPIResource",
+						"description": "The type the referenced Pokémon has"
+					}
+				},
+				"required": [
+					"slot",
+					"type"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PokemonMoveVersion": {
+				"description": "The details of the version in which the Pokémon can learn the move",
+				"properties": {
+					"move_learn_method": {
+						"$ref": "#/components/schemas/NamedAPIResource",
+						"description": "The method by which the move is learned"
+					},
+					"version_group": {
+						"$ref": "#/components/schemas/NamedAPIResource",
+						"description": "The version group in which the move is learned"
+					},
+					"level_learned_at": {
+						"type": "number",
+						"format": "double",
+						"description": "The minimum level to learn the move"
+					}
+				},
+				"required": [
+					"move_learn_method",
+					"version_group",
+					"level_learned_at"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PokemonMove": {
+				"description": "A Move along with learn methods and level details pertaining to specific version groups",
+				"properties": {
+					"move": {
+						"$ref": "#/components/schemas/NamedAPIResource",
+						"description": "The move the Pokémon can learn"
+					},
+					"version_group_details": {
+						"items": {
+							"$ref": "#/components/schemas/PokemonMoveVersion"
+						},
+						"type": "array",
+						"description": "The details of the version in which the Pokémon can learn the move"
+					}
+				},
+				"required": [
+					"move",
+					"version_group_details"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PokemonMovesByCategory": {
+				"properties": {
+					"tutor": {
+						"items": {
+							"$ref": "#/components/schemas/PokemonMove"
+						},
+						"type": "array"
+					},
+					"machine": {
+						"items": {
+							"$ref": "#/components/schemas/PokemonMove"
+						},
+						"type": "array"
+					},
+					"levelUp": {
+						"items": {
+							"$ref": "#/components/schemas/PokemonMove"
+						},
+						"type": "array"
+					},
+					"egg": {
+						"items": {
+							"$ref": "#/components/schemas/PokemonMove"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"tutor",
+					"machine",
+					"levelUp",
+					"egg"
+				],
+				"type": "object"
+			},
+			"PokemonDetails": {
+				"properties": {
+					"sprites": {
+						"properties": {
+							"back_default": {
+								"type": "string",
+								"nullable": true
+							},
+							"front_default": {
+								"type": "string",
+								"nullable": true
+							}
+						},
+						"required": [
+							"back_default",
+							"front_default"
+						],
+						"type": "object"
+					},
+					"moves": {
+						"$ref": "#/components/schemas/PokemonMovesByCategory"
+					},
+					"types": {
+						"items": {
+							"$ref": "#/components/schemas/PokemonType"
+						},
+						"type": "array"
+					},
+					"stats": {
+						"items": {
+							"$ref": "#/components/schemas/PokemonStat"
+						},
+						"type": "array"
+					},
+					"name": {
+						"type": "string"
+					},
+					"abilities": {
+						"items": {
+							"$ref": "#/components/schemas/PokemonAbility"
+						},
+						"type": "array"
+					},
+					"id": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"sprites",
+					"moves",
+					"types",
+					"stats",
+					"name",
+					"abilities",
+					"id"
+				],
+				"type": "object"
+			},
+			"NamedAPIResourceList": {
+				"description": "Calling any API endpoint without a resource ID or name will return a paginated list of available resources for that API.\nBy default, a list \"page\" will contain up to 20 resources. If you would like to change this just add a 'limit' query parameter\nto the GET request, e.g. ?=60. You can use 'offset' to move to the next page, e.g. ?limit=60&offset=60",
+				"properties": {
+					"count": {
+						"type": "number",
+						"format": "double",
+						"description": "The total number of resources available from this API"
+					},
+					"next": {
+						"type": "string",
+						"nullable": true,
+						"description": "The URL for the next page in the list"
+					},
+					"previous": {
+						"type": "string",
+						"nullable": true,
+						"description": "The URL for the previous page in the list"
+					},
+					"results": {
+						"items": {
+							"$ref": "#/components/schemas/NamedAPIResource"
+						},
+						"type": "array",
+						"description": "A list of named API resources"
+					}
+				},
+				"required": [
+					"count",
+					"next",
+					"previous",
+					"results"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "@org/source",
+		"version": "0.0.0",
+		"license": {
+			"name": "MIT"
+		},
+		"contact": {}
+	},
+	"paths": {
+		"/pokemon": {
+			"get": {
+				"operationId": "GetPokemon",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/PokemonDetails"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Pokemon"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "versionGroupId",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/games": {
+			"get": {
+				"operationId": "GetGames",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/NamedAPIResourceList"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Games"
+				],
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

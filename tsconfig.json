@@ -4,13 +4,13 @@
   "files": [],
   "references": [
     {
-      "path": "./packages/api/example"
+      "path": "./packages/battle-api"
     },
     {
-      "path": "./packages/ui/project-e2e"
+      "path": "./packages/battle-app-e2e"
     },
     {
-      "path": "./packages/ui/project"
+      "path": "./packages/battle-app"
     }
   ]
 }

@@ -1,0 +1,16 @@
+apis/GamesApi.ts
+apis/PokemonApi.ts
+apis/index.ts
+index.ts
+models/NamedAPIResource.ts
+models/NamedAPIResourceList.ts
+models/PokemonAbility.ts
+models/PokemonDetails.ts
+models/PokemonDetailsSprites.ts
+models/PokemonMove.ts
+models/PokemonMoveVersion.ts
+models/PokemonMovesByCategory.ts
+models/PokemonStat.ts
+models/PokemonType.ts
+models/index.ts
+runtime.ts
